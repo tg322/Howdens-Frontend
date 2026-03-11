@@ -1,10 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { useAuthDispatchContext, useAuthStateContext } from './auth/AuthContext'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  const {userDetails} = useAuthStateContext();
+  const {login} = useAuthDispatchContext();
+
+  useEffect(()=>{console.log(userDetails)},[userDetails])
 
   return (
     <>
@@ -18,7 +24,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={login}>
           count is {count}
         </button>
         <p>
