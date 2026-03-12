@@ -1,0 +1,123 @@
+.newPortfolioWrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    height: 100%;
+    gap: 10px;
+}
+
+.fileUploadDropZoneLabel{
+    transition: background-color linear 200ms, border-color linear 200ms;
+    width: 100%;
+    height: 100%;
+
+    h2{
+        
+        font-weight: 400;
+        margin:0px;
+    }
+
+    &:hover{
+        background-color: #0f6cbd1f;
+        border-color: #0f6cbd;
+    }
+}
+
+.fileUploadDropZoneContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    border: dashed 2px #1c76d2;
+    border-radius: 6px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+    svg{
+        height: 40px;
+        width: auto;
+        color: #1c76d2;
+    }
+}
+
+.fileUploadDropZoneContentContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: #0f6cbd dashed 2px;
+    height: 100%;
+    border-radius: 8px;
+    p{
+        margin:0px;
+    }
+    span{
+        color: #858585;
+        font-size: 12px;
+    }
+    .uploadTrigger{
+        text-decoration: underline;
+        color: #1c76d2;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 16px;
+    }
+    svg{
+        height: 40px;
+        width: auto;
+        color: #1c76d2;
+    }
+}
+
+.fileUploadDropZoneContent{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
+    gap:10px;
+}
+
+.fileUploadDropZoneMaxSizeContainer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: end;
+    span{
+        color: #858585;
+        font-size: 12px;
+    }
+}
+
+.fileUploadCard{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    max-width: 800px;
+    border: solid 1px lightgray;
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding: 20px;
+    height: fit-content;
+    position:relative;
+    h2{
+        font-weight: 400;
+    }
+
+}
+
+.fileUploadWrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    gap: 10px;
+    min-height:360px;
+}
+

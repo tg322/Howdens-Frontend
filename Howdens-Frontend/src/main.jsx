@@ -1,11 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
 import { Auth, useAuthStateContext } from './auth/AuthContext.jsx'
 import LoginPage from './pages/login/LoginPage.jsx'
 import {Navigate, Outlet, useLocation, BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/home/home.jsx'
+import Layout from './global components/layout/Layout.jsx'
+import {NewPortfolio} from './page components/new portfolio/NewPortfolio.jsx'
 
 function ProtectedRoutes(){
   const{userDetails} = useAuthStateContext();
@@ -28,7 +29,11 @@ function AppRoutes(){
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route element={<ProtectedRoutes />}>
-          <Route path="/" element={<Home />}/>
+        <Route path="/" element={<Layout />}>
+          <Route path="home" element={<Home />}/>
+          <Route path="new_portfolio" element={<NewPortfolio />}/>
+        </Route>
+          
         </Route>
         <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>

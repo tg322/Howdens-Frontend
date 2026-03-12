@@ -18,7 +18,7 @@ export default function Login(){
     //If user is logged in, navigate to the home page
     useEffect(()=>{
         if(userDetails){
-            navigate('/')
+            navigate('/home')
         }
     },[userDetails])
 

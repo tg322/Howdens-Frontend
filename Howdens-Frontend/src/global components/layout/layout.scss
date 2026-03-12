@@ -13,15 +13,105 @@
     width:100%;
     max-width: 1200px;
     height:100%;
-    min-height: 100vh;
+    box-sizing: border-box;
+    padding:20px;
 }
 
 .contentContainer{
-    display:flex;
-    flex-direction:column;
-    width:100%;
-    min-height: 100vh;
-    height:100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     overflow-y: auto;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.sideBar{
+    display: flex;
+    flex-direction: column;
+    width: 285px;
+    height: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 0px 8px 8px 8px;
+    background-color: white;
+    flex-shrink: 0;
+    gap:20px;
+    border-right: solid 1px #e8e8e8;
+}
+
+.sideBarLogo{
+    display: flex;
+    flex-direction: column;
+    height: 70px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebarButtonsContainer{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sideBarButton{
+    display: flex;
+    flex-direction: row;
+    border-radius: 8px;
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 14px;
+    gap:15px;
+    align-items:center;
+    cursor: pointer;
+    span{
+        color:#858585;
+    }
+    svg{
+        color:#858585;
+        height:100%;
+        width:auto;
+    }
+    &:hover{
+        background-color: #ececec;
+    }
+}
+
+.sideBarButtonActive{
+    background-color: #516fd22e;
+    span{
+        color:#294dc3;
+    }
+    svg{
+        color:#294dc3;
+        height:100%;
+        width:auto;
+    }
+}
+
+.display{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+}
+
+.navBar{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 70px;
+    background-color: white;
+    border-bottom: solid 1px #e8e8e8;
+}
+
+.logoutButton{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
