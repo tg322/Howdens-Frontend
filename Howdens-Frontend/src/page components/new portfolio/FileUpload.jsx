@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import './NewPortfolio.scss'
 import { useNewPortfolioDispatchContext, useNewPortfolioStateContext } from "./NewPortfolio";
@@ -6,13 +6,9 @@ import { useNewPortfolioDispatchContext, useNewPortfolioStateContext } from "./N
 
 export default function FileUpload(){
 
-    const{portfolioFiles} = useNewPortfolioStateContext();
-
+    const{state} = useNewPortfolioStateContext();
     const{onChangeFiles} = useNewPortfolioDispatchContext();
 
-    useEffect(()=>{
-        console.log(portfolioFiles)
-    },[portfolioFiles])
 
     const inputFile = useRef(null);
 
@@ -24,6 +20,7 @@ export default function FileUpload(){
 
     function onDragOver(event){
         event.preventDefault();
+        
     }
 
     async function handleDrop(event){
@@ -33,7 +30,6 @@ export default function FileUpload(){
     }
 
     async function handleChange(files){
-        
         onChangeFiles(files);
     }
 
@@ -78,6 +74,8 @@ export default function FileUpload(){
             </label>
             <div className='fileUploadDropZoneMaxSizeContainer'>
                 <span>Max file size: 2MB</span>
+                {state.overFileCount && <span style={{color:'darkred'}}>Too many files, please upload a maximum of 2 files.</span>}
+                {state.overFileSize && <span style={{color:'darkred'}}>File size too large, please try again.</span>}
             </div>
         </div>
     );
