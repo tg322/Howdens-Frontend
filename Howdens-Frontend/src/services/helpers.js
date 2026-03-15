@@ -15,13 +15,21 @@ export class Helpers{
         })
     }
 
+    unParseCSV(file){
+        return Papa.unparse(file,{
+                header:true,
+                skipEmptyLines:true,
+            })
+    }
+
     async prepareFiles(rawFiles){
         const preparedFiles = [];
         for (const rawFile of rawFiles) {
             const preparedCSV = await this.parseCSV(rawFile);
 
             let rows = []
-            //Inject an id column so DataGrid does not complain.
+            //Use correct validate method
+            //validate injects id and checks initial file data for pre-existing errors.
             if(rawFile.name === "Test_Acc.csv"){
                 preparedCSV.map((row,index)=>{
                     rows.push(this.validateACC(row, index))
@@ -43,6 +51,21 @@ export class Helpers{
             preparedFiles.push(preparedFile);
         }
         return preparedFiles
+    }
+
+    prepareFilesForUpload(files){
+        const csvFiles = [];
+        for(const file of files){
+            const csv = this.unParseCSV(file.file)
+            const fileObject = new File(
+                [csv],
+                file.name,
+                { type: "text/csv" }
+            );
+            csvFiles.push(fileObject)
+        }
+
+        return csvFiles
     }
 
     //This method checks if the file when uploaded has pre-existing validation errors

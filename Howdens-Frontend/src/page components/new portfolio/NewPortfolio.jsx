@@ -7,6 +7,8 @@ import SplitLine from "./SplitLine";
 import { initialNewPortfolioContextReducer, NewPortfolioContextReducer } from "./NewPortfolioReducer";
 import { Helpers } from "../../services/helpers";
 import Finalise from "./Finalise";
+import { useAuthStateContext } from "../../auth/AuthContext";
+import { Utilities } from "../../services/utilities";
 
 const NewPortfolioContext = createContext(undefined)
 const NewPortfolioDispatch = createContext(undefined)
@@ -30,7 +32,10 @@ export const NewPortfolio= () => {
         initialNewPortfolioContextReducer
     );
 
+    const{userDetails} = useAuthStateContext();
+
     const helpers = new Helpers();
+    const utilities = new Utilities();
 
     const onChangePortfolioName = useCallback((name)=>{
         dispatch({type:"SET_PORTFOLIO_NAME", payload:name})
@@ -62,6 +67,7 @@ export const NewPortfolio= () => {
         currentFiles.splice(index, 1);
 
         dispatch({type:"SET_PORTFOLIO_FILES", payload:currentFiles})
+        dispatch({type:"SET_FILES_FINISHED", payload:false})
     },[state.portfolioFiles])
 
     const onSetFilesFinished = useCallback((value)=>{
@@ -99,11 +105,37 @@ export const NewPortfolio= () => {
         return validatedRow;
     }, [state.portfolioFiles]);
 
-    useEffect(()=>{console.log(state.portfolioFiles)},[state.portfolioFiles])
+    const onSavePortfolio = useCallback(async ()=>{
+
+        //For each file, recrete it with the original values
+        //in the file property, const {errors, ...restOfRow} = remove errors and id, and leave the rest, return the new row inside the file map function
+        //the map then continues onto the next file
+
+        const updatedFiles = state.portfolioFiles.map(file => ({
+            ...file,
+            file: file.file.map(row => {
+                const { errors, id, ...restOfRow } = row;
+                return restOfRow;
+            })
+        }));
+
+        const csvFiles = helpers.prepareFilesForUpload(updatedFiles)
+
+        const portfolio = {
+            email:userDetails.email,
+            portfolio_name:state.portfolioName,
+            files:csvFiles
+        }
+
+        await utilities.uploadPortfolio(portfolio)
+
+
+
+    },[state.portfolioFiles, state.portfolioName])
 
     return(
         <NewPortfolioContext.Provider value={{state}}>
-            <NewPortfolioDispatch.Provider value={{onChangePortfolioName, onSetNameFinished, onChangeFiles, deleteFile, onSetFilesFinished, handleProcessRowUpdate}}>
+            <NewPortfolioDispatch.Provider value={{onChangePortfolioName, onSetNameFinished, onChangeFiles, deleteFile, onSetFilesFinished, handleProcessRowUpdate, onSavePortfolio}}>
                 <div className="newPortfolioWrapper">
                     <PortfolioName/>
                     <SplitLine/>
