@@ -6,7 +6,7 @@ import LoginPage from './pages/login/LoginPage.jsx'
 import {Navigate, Outlet, useLocation, BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/home/home.jsx'
 import Layout from './global components/layout/Layout.jsx'
-import {NewPortfolio} from './page components/new portfolio/NewPortfolio.jsx'
+import AddPortfolio from './pages/add portfolio/AddPortfolio.jsx'
 
 function ProtectedRoutes(){
   const{userDetails} = useAuthStateContext();
@@ -31,7 +31,7 @@ function AppRoutes(){
         <Route element={<ProtectedRoutes />}>
         <Route path="/" element={<Layout />}>
           <Route path="home" element={<Home />}/>
-          <Route path="new_portfolio" element={<NewPortfolio />}/>
+          <Route path="new_portfolio" element={<AddPortfolio/>}/>
         </Route>
           
         </Route>

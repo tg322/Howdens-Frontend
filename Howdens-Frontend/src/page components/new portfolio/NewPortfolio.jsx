@@ -3,6 +3,7 @@ import FileUploadContainer from './FileUploadContainer';
 import PortfolioName from './PortfolioName';
 import "./newPortfolio.scss"
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import SplitLine from "./SplitLine";
 import { initialNewPortfolioContextReducer, NewPortfolioContextReducer } from "./NewPortfolioReducer";
 import { Helpers } from "../../services/helpers";
@@ -31,6 +32,8 @@ export const NewPortfolio= () => {
         NewPortfolioContextReducer,
         initialNewPortfolioContextReducer
     );
+
+    const navigate = useNavigate()
 
     const{userDetails} = useAuthStateContext();
 
@@ -111,6 +114,8 @@ export const NewPortfolio= () => {
         //in the file property, const {errors, ...restOfRow} = remove errors and id, and leave the rest, return the new row inside the file map function
         //the map then continues onto the next file
 
+        dispatch({type:"SET_SAVING", payload:true})
+
         const updatedFiles = state.portfolioFiles.map(file => ({
             ...file,
             file: file.file.map(row => {
@@ -127,22 +132,24 @@ export const NewPortfolio= () => {
             files:csvFiles
         }
 
-        await utilities.uploadPortfolio(portfolio)
+        const response = await utilities.uploadPortfolio(portfolio)
 
-
+        if(response.error){
+            dispatch({type:"SET_SAVING_ERROR", payload:response.error})
+        }else{
+            navigate("/home")
+        }   
 
     },[state.portfolioFiles, state.portfolioName])
 
     return(
         <NewPortfolioContext.Provider value={{state}}>
             <NewPortfolioDispatch.Provider value={{onChangePortfolioName, onSetNameFinished, onChangeFiles, deleteFile, onSetFilesFinished, handleProcessRowUpdate, onSavePortfolio}}>
-                <div className="newPortfolioWrapper">
                     <PortfolioName/>
                     <SplitLine/>
                     <FileUploadContainer/>
                     <SplitLine/>
                     <Finalise/>
-                </div> 
             </NewPortfolioDispatch.Provider>
         </NewPortfolioContext.Provider>
         

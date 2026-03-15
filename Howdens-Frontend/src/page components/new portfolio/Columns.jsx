@@ -1,7 +1,6 @@
 import countryCodesList from './countryCodes.json'
 import { Helpers } from '../../services/helpers'
 import Cell from './Cell'
-import Tooltip from '@mui/material/Tooltip'
 import DateCell from './DateCell'
 
 const helpers = new Helpers()
@@ -175,80 +174,6 @@ export const filePreviewColumns = [
         ]
     },
 ]
-
-function validateACCField(field, value){
-    if(field === "ACCNTNUM"){
-        if(value == null || value == undefined || value.length === 0){
-            return validationTypes.empty;
-        }
-    }
-
-    if(field === "ACCNTNAME"){
-        if(value == null || value == undefined || value.length === 0){
-            return validationTypes.empty;
-        }
-    }
-
-    if(field === "POLICYNUM"){
-        if(value == null || value == undefined || value.length === 0){
-            return validationTypes.empty;
-        }
-    }
-
-    if(field === "POLICYTYPE"){
-        if(value == null || value == undefined || value.length === 0){
-            return validationTypes.empty;
-        }else if(!helpers.isNumber(value)) {
-            return validationTypes.notNum;
-        }
-    }
-
-    if(field === "UNDCOVAMT"){
-        if(value == null || value == undefined || value.length === 0){
-            return validationTypes.empty;
-        }else if(!helpers.isNumber(value)) {
-            return validationTypes.notNum;
-        }
-    }
-
-    if(field === "PARTOF"){
-        if(value == null || value == undefined || value.length === 0){
-            return validationTypes.empty;
-        }else if(!helpers.isNumber(value)) {
-            return validationTypes.notNum;
-        }
-    }
-
-    if(field === "BLANLIMAMT"){
-        if(value == null || value == undefined || value.length === 0){
-            return validationTypes.empty;
-        }else if(!helpers.isNumber(value)) {
-            return validationTypes.notNum;
-        }
-    }
-
-    if(field === "BLANDEDAMT"){
-        if(value == null || value == undefined || value.length === 0){
-            return validationTypes.empty;
-        }else if(!helpers.isNumber(value)) {
-            return validationTypes.notNum;
-        }
-    }
-
-    if(field === "INCEPTDATE"){
-        if(value == null || value == undefined || value.length === 0){
-            return validationTypes.empty;
-        }
-    }
-
-    if(field === "EXPIREDATE"){
-        if(value == null || value == undefined || value.length === 0){
-            return validationTypes.empty;
-        }
-    }
-
-    return null
-}
 
 export const fileEditColumns = [
     {

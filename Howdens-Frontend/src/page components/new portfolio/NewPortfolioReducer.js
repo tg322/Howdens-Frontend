@@ -4,7 +4,9 @@ export const initialNewPortfolioContextReducer = {
   portfolioFiles: [],
   overFileCount:false,
   overFileSize:false,
-  filesFinished:false
+  filesFinished:false,
+  saving:false,
+  savingError:""
 };
 
 export function NewPortfolioContextReducer(state, action) {
@@ -46,6 +48,18 @@ export function NewPortfolioContextReducer(state, action) {
             ...state,
             filesFinished:action.payload
         };
+    case "SET_SAVING":
+      return{
+        ...state,
+        saving:action.payload
+      }
+
+    case "SET_SAVING_ERROR":
+      return{
+        ...state,
+        savingError:action.payload,
+        saving:false
+      }
 
     default:
       return state;

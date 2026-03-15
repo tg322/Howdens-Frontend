@@ -9,7 +9,7 @@ export default function DateCell(props) {
                 title={errorMessage || ""}
                 placement="bottom"
             >
-                <div style={{backgroundColor:'red'}}>
+                <div className="">
                     <span>{editCellProps.formattedValue}</span>
                 </div>
             </Tooltip>

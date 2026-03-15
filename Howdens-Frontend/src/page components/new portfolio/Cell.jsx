@@ -1,4 +1,5 @@
 import Tooltip from "@mui/material/Tooltip";
+import './newPortfolio.scss'
 
 export default function Cell(props) {
     const { errorMessage, ...editCellProps } = props;
@@ -8,7 +9,7 @@ export default function Cell(props) {
                 title={errorMessage || ""}
                 placement="bottom"
             >
-                <div style={{display:'flex', backgroundColor:'#ff000040', height:'100%', width:'100%'}}>
+                <div className="errorCell">
                     <span>{editCellProps.value}</span>
                 </div>
             </Tooltip>

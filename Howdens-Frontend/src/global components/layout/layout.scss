@@ -51,6 +51,12 @@
     align-items: center;
 }
 
+.logo{
+    max-height: 50px;
+    width: auto;
+    filter: brightness(0) saturate(100%);
+}
+
 .sidebarButtonsContainer{
     display: flex;
     flex-direction: column;

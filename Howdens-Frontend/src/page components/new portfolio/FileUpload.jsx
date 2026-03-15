@@ -36,7 +36,6 @@ export default function FileUpload(){
     return(
         <div className='fileUploadWrapper'>
             <input
-                style={{display:'none'}}
                 type="file"
                 ref={inputFile}
                 className="inputFile"

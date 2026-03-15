@@ -6,7 +6,7 @@ import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 import EditOffRoundedIcon from '@mui/icons-material/EditOffRounded';
-
+import './newPortfolio.scss'
 
 export default function EditFile({file, index}){
     const{handleProcessRowUpdate} = useNewPortfolioDispatchContext();
@@ -19,8 +19,8 @@ export default function EditFile({file, index}){
     }
 
     return(
-        <div style={{display:'flex', flexDirection:'column', width:'100%', gap:'10px'}}>
-            <div style={{display:'flex', flexDirection:'row', width:'100%', justifyContent:"space-between"}}>
+        <div className="editFileContainer">
+            <div className="editFileToolbar">
                 <span>{file.name}</span>
                 <Tooltip title="Edit File">
                     <IconButton aria-label="Preview" size="small" sx={{borderRadius:'8px', height:'fit-content', padding:'4px'}} onClick={()=> setShowEdit(!showEdit)}>

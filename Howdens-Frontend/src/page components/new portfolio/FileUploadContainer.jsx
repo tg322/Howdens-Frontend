@@ -5,23 +5,28 @@ import UploadedFile from './UploadedFile';
 import Card from '../../global components/card/Card';
 import IconButton from '@mui/material/IconButton';
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
+import NextButton from './NextButton';
 
 export default function FileUploadContainer(){
 
     const{state} = useNewPortfolioStateContext();
     const{onSetFilesFinished} = useNewPortfolioDispatchContext();
 
+    function nextButtonOnClick(){
+        onSetFilesFinished(true)
+    }
+
     return(
         <Card height={800}>
             <div className='fileUploadCard'>
                 {
                     !state.nameFinished &&
-                    <div style={{display:'flex', zIndex:'2', width:'100%', height:'100%', position:'absolute', backdropFilter:"blur(2px)", top:"0", left:"0", inset:"0"}}>
+                    <div className='cardBlur'>
 
                     </div>
                 }
                 
-                <h2 style={{margin:'0px'}}>Add Files</h2>
+                <h2 className='cardHeading'>Add Files</h2>
                 {state.portfolioFiles && state.portfolioFiles.length < 2 &&
                     <FileUpload/>
                 }
@@ -29,13 +34,14 @@ export default function FileUploadContainer(){
                     <UploadedFile key={index} index={index} file={file}/>
                 ))}
                 {state.portfolioFiles && state.portfolioFiles.length == 2 &&
-                    <div style={{display:'flex', flexDirection:'column', width:'100%', alignItems:'end'}}>
-                        <div style={{display:'flex', flexDirection:'column', width:'60px', height:'auto'}}>
-                            <IconButton aria-label="add portfolio" size="large" sx={{borderRadius:'8px', height:'fit-content', padding:'4px'}} disabled={state.portfolioFiles.length < 2} onClick={()=> onSetFilesFinished(true)}>
-                                <ArrowForwardRoundedIcon fontSize="inherit" sx={{color:'#516fd273'}}/>
-                            </IconButton>
-                        </div>
-                    </div>
+                    // <div className="nextButtonWrapper">
+                    //     <div className="nextButtonContainer">
+                    //         <IconButton aria-label="add portfolio" size="large" sx={{borderRadius:'8px', height:'fit-content', padding:'4px'}} disabled={state.portfolioFiles.length < 2} onClick={()=> onSetFilesFinished(true)}>
+                    //             <ArrowForwardRoundedIcon fontSize="inherit" sx={{color:'#516fd273'}}/>
+                    //         </IconButton>
+                    //     </div>
+                    // </div>
+                    <NextButton disabled={state.portfolioFiles.length < 2} onButtonClick={nextButtonOnClick}/>
                 }
                 </div>
         </Card>
