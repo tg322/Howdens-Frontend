@@ -34,13 +34,6 @@ export default function FileUploadContainer(){
                     <UploadedFile key={index} index={index} file={file}/>
                 ))}
                 {state.portfolioFiles && state.portfolioFiles.length == 2 &&
-                    // <div className="nextButtonWrapper">
-                    //     <div className="nextButtonContainer">
-                    //         <IconButton aria-label="add portfolio" size="large" sx={{borderRadius:'8px', height:'fit-content', padding:'4px'}} disabled={state.portfolioFiles.length < 2} onClick={()=> onSetFilesFinished(true)}>
-                    //             <ArrowForwardRoundedIcon fontSize="inherit" sx={{color:'#516fd273'}}/>
-                    //         </IconButton>
-                    //     </div>
-                    // </div>
                     <NextButton disabled={state.portfolioFiles.length < 2} onButtonClick={nextButtonOnClick}/>
                 }
                 </div>

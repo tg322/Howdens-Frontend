@@ -36,4 +36,13 @@ export class Utilities{
             throw console.error(error)
         }
     }
+
+    async get_all_portfolios(){
+        try{
+            const response = await axios.get(`${this.base_url}/portfolio/get_all_portfolios`)
+            return response.data
+        }catch(error){
+            throw console.error(error)
+        }
+    }
 }
