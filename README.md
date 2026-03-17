@@ -3,6 +3,8 @@ To run:
 - unzip,
 - right click and select "New terminal at folder",
 - once the terminal opens,
+- Paste: cd Howdens-Frontend,
+- Press enter
 - paste: npm install
 - Press enter
 - then paste:
